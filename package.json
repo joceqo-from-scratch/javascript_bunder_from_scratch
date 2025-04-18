@@ -1,0 +1,11 @@
+{
+  "name": "building_a_javascript_bundler",
+  "packageManager": "yarn@4.4.1",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "jest-haste-map": "^29.7.0",
+    "jest-resolve": "^29.7.0",
+    "jest-resolve-dependencies": "^29.7.0",
+    "yargs": "^17.7.2"
+  }
+}
