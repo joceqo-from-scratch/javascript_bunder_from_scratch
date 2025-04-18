@@ -56,7 +56,7 @@ console.log(Array.from(allFiles));
 // ['/path/to/entry-point.js', '/path/to/apple.js', …]
 ```
 
-### Serialize the bundle
+## Serialize the bundle
 
 ```js
 import fs from 'fs';
@@ -99,3 +99,7 @@ But we could inline code to have one big file without any require.
 ```
 
 this create a regex that match the require and espace the special cahracters. `$&` means add the match string so `dependencyName.replace(/[\/.]/g, '\\$&')`  will add `\\` before the group `[/.]`. For example, if dependencyName is `./module`, the result will be `\.\/module`.
+
+## Execute the bundle using a runtime
+
+
