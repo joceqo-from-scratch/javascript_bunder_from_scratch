@@ -70,4 +70,32 @@ await Promise.all(
   }),
 );
 console.log(allCode.join('\n'));
+
+// module.exports = 'apple ' + require('./banana') + ' ' + require('./kiwi');
+
+// console.log(require('./apple'));
+
+// module.exports = 'kiwi ' + require('./melon') + ' ' + require('./tomato');
+
+// module.exports = 'banana ' + require('./kiwi');
+
+// module.exports = 'melon';
+
+// module.exports = 'tomato';
 ```
+The above example concatenates all of the source files and prints them. Unfortunately, if we tried running the output it won’t work: it calls `require`, which doesn’t exist in a browser.
+
+But we could inline code to have one big file without any require.
+
+
+```js
+    code = code.replace(
+      new RegExp(
+        // Escape `.` and `/`.
+        `require\\(('|")${dependencyName.replace(/[\/.]/g, '\\$&')}\\1\\)`,
+      ),
+      modules.get(dependencyPath).code,
+    );
+```
+
+this create a regex that match the require and espace the special cahracters. `$&` means add the match string so `dependencyName.replace(/[\/.]/g, '\\$&')`  will add `\\` before the group `[/.]`. For example, if dependencyName is `./module`, the result will be `\.\/module`.
